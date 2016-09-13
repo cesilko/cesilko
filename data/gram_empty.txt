@@ -1,0 +1,15 @@
+	(
+		(# should never be used)
+		(
+			( ((type dummy)) )
+			( ((type dummy2)) )
+		)
+		
+		(# a + np)
+		(
+			( ((type word) (pos a) (case $case) (gender $gender) (number $number))   ((type shackle))
+				((type word) (pos n) (case $case) (gender $gender) (number $number)) )
+			( $1 ()   ((type shackle_xxx)) $3 () )
+		)
+		
+	)

@@ -1,0 +1,185 @@
+	(
+		(#)
+		(# deep rules)
+		(#)
+
+		(# perspron-dat + l-part)
+		(
+			( ((type word) (pos pron) (prontype pers) (case dat))   ((type shackle))   ((type word) (pos verb) (vform lpart)) )
+			( $3 ((iobj $1)) )
+		)
+
+		(# se + l-part)
+		(
+			( ((type word) (pos pron) (prontype refl) (form se))   ((type shackle))   ((type word) (pos verb) (vform lpart)) )
+			( $3 ((refl 1)) )
+		)
+
+		(# l-part + se)
+		(
+			( ((type word) (pos verb) (vform lpart))   ((type shackle))   ((type word) (pos pron) (prontype refl) (form se)) )
+			( $1 ((refl 1)) )
+		)
+
+		(# verb-fin + pp)
+		(
+			( ((type word) (pos verb) (vform fin))   ((type shackle))   ((type word) (pos n) (!has_prep 1)) )
+			( $1 ((adj $3)) )
+		)
+
+		(# verb-fin + part-short)
+		(
+			( ((type word) (pos verb) (vform fin) (number $number))   ((type shackle))   ((type word) (pos verb) (vform part_short) (number $number)) )
+			( $3 ((adj $1)) )
+		)
+
+		(# 'ale' + verb-fin)
+		(
+			( ((type word) (form ale))   ((type shackle))   ((type word) (pos verb) (vform fin)) )
+			( $3 ((adj-xbut $1)) )
+		)
+
+		(# verb-fin + se)
+		(
+			( ((type word) (pos verb) (vform fin))   ((type shackle))   ((type word) (pos pron) (prontype refl) (form se)) )
+			( $1 ((refl 1)) )
+		)
+
+		(# se + verb-fin)
+		(
+			( ((type word) (pos pron) (prontype refl) (form se))   ((type shackle))   ((type word) (pos verb) (vform fin)) )
+			( $3 ((refl 1)) )
+		)
+
+		(# verb-inf + se)
+		(
+			( ((type word) (pos verb) (vform inf))   ((type shackle))   ((type word) (pos pron) (prontype refl) (form se)) )
+			( $1 ((refl 1)) )
+		)
+
+		(# adv + l-part)
+		(
+			( ((type word) (pos adv))   ((type shackle))   ((type word) (pos verb) (vform lpart)) )
+			( $3 ((adv-adv-l $1)) )
+		)
+
+		(# pp[np] + l-part)
+		(
+			( ((type word) (pos n2) (has_prep 1))   ((type shackle))   ((type word) (pos verb) (vform lpart)) )
+			( $3 ((adv-pp-l $1)) )
+		)
+
+		(# pp[pron] + l-part)
+		(
+			( ((type word) (pos pron) (!has_prep 1))   ((type shackle))   ((type word) (pos verb) (vform lpart)) )
+			( $3 ((adv-pp-l $1)) )
+		)
+
+		(# subject + l-part)
+		(
+			( ((type word) (pos n) (case nom) (gender $gender) (number $number))   ((type shackle))   ((type word) (pos verb) (vform lpart) (person 3) (gender $gender) (number $number)) )
+			( $3 ((subj $1)) )
+		)
+
+		(# l-part + subject)
+		(
+			( ((type word) (pos verb) (vform lpart) (person 3) (gender $gender) (number $number))   ((type shackle))   ((type word) (pos n) (case nom) (gender $gender) (number $number)) )
+			( $1 ((subj $3)) )
+		)
+
+		(# být-fin + subject)
+		(
+			( ((type word) (pos verb) (vform fin) (lemma být))   ((type shackle))   ((type word) (pos n) (case nom) (person 3)) )
+			( $1 ((subj $3)) )
+		)
+
+		(# být-fin + np[ins])
+		(
+			( ((type word) (pos verb) (vform fin) (lemma být))   ((type shackle))   ((type word) (pos n) (case ins) (person 3)) )
+			( $1 ((nom-pred-n $3)) )
+		)
+
+		(#)
+		(# shallow rules)
+		(#)
+
+		(# prep + np)
+		(
+			( ((type word) (pos prep) (case $case))   ((type shackle))   ((type word) (pos n) (case $case)) )
+			( $3 ((prep $1) (has_prep 1)) )
+		)
+		
+		(# prep + pron-pers)
+		(
+			( ((type word) (pos prep) (case $case))   ((type shackle))   ((type word) (pos pron) (prontype pers) (case $case)) )
+			( $3 ((prep $1) (has_prep 1)) )
+		)
+		
+		(# prep + indef)
+		(
+			( ((type word) (pos prep) (case $case))   ((type shackle))   ((type word) (pos pron) (prontype indef) (case $case)) )
+			( $3 ((prep $1) (has_prep 1)) )
+		)
+		
+		(# prep + pron-dem)
+		(
+			( ((type word) (pos prep) (case $case))   ((type shackle))   ((type word) (pos pron) (prontype dem) (case $case)) )
+			( $3 ((prep $1) (has_prep 1)) )
+		)
+		
+		(# pomocí + np-gen)
+		(
+			( ((type word) (form pomocí) (att-gen nil) (att nil) (prep nil) (det nil) (coord nil) (conj nil))   ((type shackle))
+				((type word) (pos n) (case gen)) )
+			( $3 ((prep $1)) )
+		)
+		
+		(# dle + np-gen)
+		(
+			( ((type word) (lemma dle))   ((type shackle))   ((type word) (pos n) (case gen)) )
+			( $3 ((prep $1)) )
+		)
+		
+		(# adv + a)
+		(
+			( ((type word) (pos adv))   ((type shackle))   ((type word) (pos a)) )
+			( $3 ((prep $1)) )
+		)
+		
+		(# pron + np)
+		(
+			( ((type word) (pos pron) (case $case) (gender $gender) (number $number))   ((type shackle))
+				((type word) (pos n) (case $case) (gender $gender) (number $number)) )
+			( $3 ((det $1)) )
+		)
+		
+		(# a + np)
+		(
+			( ((type word) (pos a) (case $case) (gender $gender) (number $number))   ((type shackle))
+				((type word) (pos n) (case $case) (gender $gender) (number $number)) )
+			( $3 ((+att $1)) )
+		)
+		
+		
+		(
+			(	((type word) (pos a) (case $case) (gender $gender) (number $number))   ((type shackle))
+				((type word) (pos conj) (lemma a-1))   ((type shackle))
+				((type word) (pos a) (case $case) (gender $gender) (number $number))
+			)
+			( $5 ((coord $1) (conj $3)) )
+		)
+		
+		(
+			(	((type word) (pos n) (case $case))   ((type shackle))
+				((type word) (pos conj) (lemma a-1))   ((type shackle))
+				((type word) (pos n) (case $case))
+			)
+			( $5 ((coord $1) (conj $3)) )
+		)
+		
+		(# np + np-gen)
+		(
+			( ((type word) (pos n))   ((type shackle))   ((type word) (pos n) (case gen) (att-gen nil)) )
+			( $1 ((att-gen $3)) )
+		)
+	)

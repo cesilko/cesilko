@@ -1,0 +1,44 @@
+	(
+		(
+			( ((type word))   ((type shackle)) )
+			( $1 () )
+		)
+		(
+			( ((type raw_word))   ((type shackle)) )
+			( $1 () )
+		)
+		(
+			( ((type number))   ((type shackle)) )
+			( $1 () )
+		)
+		(
+			( ((type unknown))   ((type shackle)) )
+			( $1 () )
+		)
+		(
+			( ((type note))   ((type shackle)) )
+			( $1 () )
+		)
+		
+		(
+			( ((type word))   ((type shackle_xxx)) )
+			( $1 () )
+		)
+		(
+			( ((type raw_word))   ((type shackle_xxx)) )
+			( $1 () )
+		)
+		(
+			( ((type number))   ((type shackle_xxx)) )
+			( $1 () )
+		)
+		(
+			( ((type unknown))   ((type shackle_xxx)) )
+			( $1 () )
+		)
+		(
+			( ((type note))   ((type shackle_xxx)) )
+			( $1 () )
+		)
+		
+	)
