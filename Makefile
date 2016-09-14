@@ -4,6 +4,11 @@ compile:
 	$(MAKE) -C code/syntan
 	$(MAKE) -C code/transfer
 	$(MAKE) -C code/ranker
+compile_mac:
+	$(MAKE) -C code/morph mac
+	$(MAKE) -C code/syntan mac
+	$(MAKE) -C code/transfer mac
+	$(MAKE) -C code/ranker mac
 gather:
 	cp code/morph/morph_cz .
 	cp code/syntan/syntan .
