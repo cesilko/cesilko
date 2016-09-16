@@ -18,7 +18,7 @@ static NSMutableSet* unknownLemmas;
 }
 
 - (id)initWithFile:(NSString*)fileName {
-	NSLog(@"abstract instance method invoked in %@", [self className]);
+	NSLog(@"abstract instance method invoked in %@", self.className);
 	return nil;
 }
 
@@ -31,7 +31,7 @@ static NSMutableSet* unknownLemmas;
 }
 
 - (void)transfer:(NSDictionary*)source result:(NSMutableArray*)result {
-	NSLog(@"abstract instance method invoked in %@", [self className]);
+	NSLog(@"abstract instance method invoked in %@", self.className);
 }
 
 + (void)log:(NSString*)message {
@@ -39,6 +39,6 @@ static NSMutableSet* unknownLemmas;
 }
 
 + (NSArray*)messages {
-	return [messages allObjects];
+	return messages.allObjects;
 }
 @end

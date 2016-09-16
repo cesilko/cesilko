@@ -13,35 +13,34 @@
 int main(int argc, char *argv[]) {
 	//NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	@autoreleasepool {
-	NSString* morphFile = [NSString stringWithUTF8String: argv[2]];
-	NSString* inputFile = [NSString stringWithUTF8String: argv[3]];
+	NSString* morphFile = @(argv[2]);
+	NSString* inputFile = @(argv[3]);
 	
         Class morphClass = Nil;
 	if (!strcmp(argv[1], "cz"))
         morphClass = [CSCzechMorphologicalAnalyzer class];
 		//[CSCzechMorphologicalAnalyzer poseAsClass: [CSMorphologicalAnalyzer class]];
 	
-	CSMorphologicalAnalyzer* ma = [[morphClass alloc] initWithParameters: [NSDictionary dictionaryWithObjectsAndKeys: morphFile, @"file", nil]];
+	CSMorphologicalAnalyzer* ma = [[morphClass alloc] initWithParameters: @{@"file": morphFile}];
 	CSReader* reader = [CSReader readerWithFile: inputFile];
 	NSMutableArray* sentences = [NSMutableArray array];
 	NSEnumerator* enumerator = [[reader sentences] objectEnumerator];
 	NSArray* sentence;
 	while (sentence = [enumerator nextObject]) {
-		if ([[[sentence objectAtIndex: 0] substringToIndex: 1] isEqual: @"§"]) break;
+		if ([[sentence[0] substringToIndex: 1] isEqual: @"§"]) break;
 		//NSLog(@"%@", [sentence objectAtIndex: 0]);
 		NSArray* array = [ma analyzeArray: sentence];
 		//NSLog(@"%@ %u", array, [array count]);
-		[sentences addObject: [NSArray arrayWithObjects: sentence, array, nil]];
+		[sentences addObject: @[sentence, array]];
 	}
-	[ma release];
 	//NSLog(@"%u", [sentences count]);
 	
 	NSMutableData* data = [NSMutableData data];
-	NSArchiver* archiver = [[[NSArchiver alloc] initForWritingWithMutableData: data] autorelease];
+	NSArchiver* archiver = [[NSArchiver alloc] initForWritingWithMutableData: data];
 	[archiver encodeObject: sentences];
 	//NSLog(@"%u", [data length]);
-	const char* bytes = [data bytes];
-	unsigned length = [data length], i;
+	const char* bytes = data.bytes;
+	unsigned long length = data.length, i;
 	for (i = 0; i < length; i++) {
 		printf("%c", bytes[i]);
 	}

@@ -29,7 +29,7 @@ static NSString* targetLanguage;
 }*/
 
 + (void)setTargetLanguage:(NSString*)lang {
-	targetLanguage = [lang retain];
+	targetLanguage = lang;
 }
 
 + (NSString*)targetLanguage {
@@ -37,11 +37,11 @@ static NSString* targetLanguage;
 }
 
 - (void)transfer:(NSMutableDictionary*)head child:(NSMutableDictionary*)child result:(NSMutableArray*)result attribute:(NSString*)attName {
-	NSLog(@"abstract instance method invoked in %@", [self className]);
+	NSLog(@"abstract instance method invoked in %@", self.className);
 }
 
 - (void)preprocess:(NSMutableDictionary*)dict result:(NSMutableArray*)result { // parent:(NSMutableDictionary*)parent {
-	NSLog(@"abstract instance method invoked in %@", [self className]);
+	NSLog(@"abstract instance method invoked in %@", self.className);
 }
 
 @end

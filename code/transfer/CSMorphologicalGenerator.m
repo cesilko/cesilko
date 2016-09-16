@@ -16,26 +16,26 @@ static NSMutableSet* messages;
 }
 
 - (id)initWithFile:(NSString*)_fileName {
-	NSLog(@"abstract instance method invoked in %@", [self className]);
+	NSLog(@"abstract instance method invoked in %@", self.className);
 	return nil;
 }
 
 - (void)load {
-	NSLog(@"abstract instance method invoked in %@", [self className]);
+	NSLog(@"abstract instance method invoked in %@", self.className);
 }
 
 - (NSArray*)generate:(NSString*)lemma tagPrefix:(id)tagPrefix {
-	NSLog(@"abstract instance method invoked in %@", [self className]);
+	NSLog(@"abstract instance method invoked in %@", self.className);
 	return nil;
 }
 
 - (NSArray*)generateArray:(NSArray*)sentence {
-	NSLog(@"abstract instance method invoked in %@", [self className]);
+	NSLog(@"abstract instance method invoked in %@", self.className);
 	return nil;
 }
 
 - (NSArray*)generateByExtendingAVMs:(NSArray*)avms {
-	NSLog(@"abstract instance method invoked in %@", [self className]);
+	NSLog(@"abstract instance method invoked in %@", self.className);
 	return nil;
 }
 
@@ -49,6 +49,6 @@ static NSMutableSet* messages;
 }
 
 + (NSArray*)messages {
-	return [messages allObjects];
+	return messages.allObjects;
 }
 @end
