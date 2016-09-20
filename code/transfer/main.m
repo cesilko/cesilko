@@ -18,8 +18,8 @@
 
 int main(int argc, char *argv[]) {
 	@autoreleasepool {
-		id lextr = Nil;
-		id strtr = Nil;
+		id lextr = nil;
+		id strtr = nil;
 		BOOL tagsAsOutput = argc > 4 && !strcmp(argv[4], "tags");
 		if (!strcmp(argv[1], "czsk")) {
 			lextr = [[CSCzechToXLexicalTransfer alloc] initWithFile: @(argv[2])];
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
 		[NSDictionary setLexicalTransfer: lextr];
 		//QXStructuralTransfer* strtr = [[[QXStructuralTransfer alloc] init] autorelease];
 		[NSDictionary setStructuralTransfer: strtr];
-		id mg;
+		id mg = nil;
 		if (!strcmp(argv[1] + 2, "sk")){
 			mg = [[CSSlovakMorphologicalGenerator alloc] initWithFile: @(argv[3])];
 		}
@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
 		[NSDictionary setTargetMorphology: mg];
 		/* testing morphological synthesis
 		NSLog(@"%@", [mg generate: @"lehnen" tags: [NSSet setWithObjects: @"PA2", nil]]);
-		exit(0); /**/
+		exit(0); */
 		NSMutableData* data = [NSMutableData data];
 		FILE* file = stdin;
 		while (!feof(file)) {

@@ -10,17 +10,17 @@
 #import "QX_String.h"
 
 @implementation CSSlovakMorphologicalGenerator
-- (id)init {
-	if (self = [super init]) {
-		fileName = @"/home/jernej/projekti/projekti/cesilko/cssl/data/skm.txt";
-		[self load];
-	}
-	return self;
-}
+//- (id)init {
+//	if (self = [super init]) {
+//		fileName = @"/home/jernej/projekti/projekti/cesilko/cssl/data/skm.txt";
+//		[self load];
+//	}
+//	return self;
+//}
 
 - (id)initWithFile:(NSString*)_fileName {
 	if (self = [super init]) {
-		fileName = _fileName;;
+		fileName = _fileName;
 		[self load];
 	}
 	return self;
@@ -35,7 +35,7 @@
 	@autoreleasepool {
 	//NSCharacterSet* separators = [NSCharacterSet characterSetWithCharactersInString: @"|"];
 //JERNEJ changed this line	
-		FILE* file = fopen("/home/jernej/projekti/projekti/cesilko/cssl/data/skm.txt", "r");
+		FILE* file = fopen([fileName cString] /*"/home/jernej/projekti/projekti/cesilko/cssl/data/skm.txt"*/, "r");
 		char line[1000]; //int n = 0;
 		while (fgets(line, 1000, file) != NULL) {
 			//if (++n % 1000 == 0) NSLog(@"%d", n);
